@@ -1,0 +1,3 @@
+secuency_1 = example_sec_1.fas
+secuency_2 = example_sec_2.fas
+index_file = example_index.xlsx
