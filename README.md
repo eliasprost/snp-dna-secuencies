@@ -18,6 +18,7 @@ id = identical nucleotides in both sequences.
 snp = different nucleotides in the sequences.
 ```
 Index file example:
+
 ![Image text](https://github.com/eliasprost/snp-dna-secuencies/blob/main/input_index_example.JPG)
 
 ### Start
@@ -28,4 +29,5 @@ After executing the script, the counters are printed on the screen and an .xlsx 
 results_day-month-year-hour-min-sec.xlsx
 ```
 Results file example:
+
 ![Image text](https://github.com/eliasprost/snp-dna-secuencies/blob/main/results_example.JPG)
