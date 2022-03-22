@@ -23,7 +23,6 @@ try:
 except Exception as e:
     print(f"An error occurred while try to open config.txt file: {e}")
     
-
 #%% Read both secuencies FASTA files (.fas)
 def read_genome(filename):
     genome = ''
@@ -54,12 +53,17 @@ try:
 except Exception as e: 
     print(f"An error occurred while try to open index file: {e}")
 
-
 #%% Compare secuencies and set values to results files
 archivo_index["na"] = 0
 archivo_index["indel"] = 0
 archivo_index["id"] = 0
 archivo_index["snp"] = 0
+
+# Set differents counters
+na = 0
+indel = 0
+id = 0
+snp = 0
 
 for line_idx in archivo_index.index:
     start = archivo_index.loc[line_idx, "start"]
@@ -67,11 +71,6 @@ for line_idx in archivo_index.index:
     
     sec_1_gen = sec_1[start-1: end-1]
     sec_2_gen = sec_2[start-1: end-1]
-
-    na = 0
-    indel = 0
-    id = 0
-    snp = 0
 
     for idx, nucleotid_sec_1 in enumerate(sec_1_gen):
         
@@ -102,5 +101,7 @@ for line_idx in archivo_index.index:
 date_today = datetime.datetime.today().strftime("%d-%m-%Y_%Hh_%Mm_%Ssec")
 name_archive_results = f"results_{date_today}.xlsx"
 archivo_index.to_excel(name_archive_results)
-
+print("- - - - - - - - - - - - - - - - - - - -")
+print(f"Count:\nna = {na}, indel = {indel}, id = {id}, snp = {snp}")
+print("- - - - - - - - - - - - - - - - - - - -")
 print(f"{name_archive_results} was generated successfully")
