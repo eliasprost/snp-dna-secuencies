@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 
 #%% Import libreries
-
 import pandas as pd
 import datetime
 
 #%% Open config.txt
-
 try:
     with open("config.txt") as file:
         lines = file.readlines()
@@ -27,7 +25,6 @@ except Exception as e:
     
 
 #%% Read both secuencies FASTA files (.fas)
-
 def read_genome(filename):
     genome = ''
     with open(filename, 'r') as f:
@@ -47,7 +44,6 @@ except Exception as e:
     print(f"An error occurred while try to open FASTA secuencies files: {e}")
 
 #%% Open index.xlsx
-
 try:
     archivo_index = pd.read_excel(name_archive_index, header=None)
     archivo_index.columns = ["type", "name", "start", "end"]
@@ -60,7 +56,6 @@ except Exception as e:
 
 
 #%% Compare secuencies and set values to results files
-
 archivo_index["na"] = 0
 archivo_index["indel"] = 0
 archivo_index["id"] = 0
@@ -80,9 +75,8 @@ for line_idx in archivo_index.index:
 
     for idx, nucleotid_sec_1 in enumerate(sec_1_gen):
         
-        nucleotid_sec_2 = sec_2[idx]
+        nucleotid_sec_2 = sec_2_gen[idx]
     
-        # Si hay guion en comparación
         if nucleotid_sec_1 == "-" or nucleotid_sec_2 == "-":
             if nucleotid_sec_1 == "-" and nucleotid_sec_2 == "-":
                 na += 1
@@ -105,7 +99,6 @@ for line_idx in archivo_index.index:
         print(e)
                 
 #%% Set results file name with date and time
- 
 date_today = datetime.datetime.today().strftime("%d-%m-%Y_%Hh_%Mm_%Ssec")
 name_archive_results = f"results_{date_today}.xlsx"
 archivo_index.to_excel(name_archive_results)
